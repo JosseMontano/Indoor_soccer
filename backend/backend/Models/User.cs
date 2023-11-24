@@ -10,7 +10,7 @@ namespace backend.Models
         [StringLength(25)]
         public string UserName { get; set; }
         [Required]
-        [StringLength(25)]
+        [StringLength(250)]
         public string Password { get; set; }
     }
 }
