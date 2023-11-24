@@ -1,4 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using backend.Context;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//add Postgres
+builder.Services.AddDbContext<DBCont>(option => option.UseNpgsql(builder.Configuration.GetConnectionString("connection")));
+
+
+
+//cors
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+    {
+        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+    });
+
+});
+
+
+
 
 // Add services to the container.
 
@@ -8,6 +30,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+
+app.UseCors(MyAllowSpecificOrigins);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -21,5 +47,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.Run();
