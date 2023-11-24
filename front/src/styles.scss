@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face{
   font-family:Poppins; 
-  src:url(./fonts//Poppins/Poppins-ExtraLight.ttf)
+  src:url(./fonts//Poppins/Poppins-Regular.ttf)
   }
 
 
@@ -11,3 +11,22 @@
   box-sizing: border-box;
   font-family:Poppins;
   }
+
+  .btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+   }
+   
+   .btn:hover {
+    background-color: #45a049;
+   }
+
