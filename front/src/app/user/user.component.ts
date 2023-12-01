@@ -9,5 +9,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
+  showHello=true;
 
+
+
+  handleModal(): void {
+    this.showHello = !this.showHello
+  }
 }

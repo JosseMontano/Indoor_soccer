@@ -1,1 +1,46 @@
-<p>user works!</p>
+<div class="tabla-padre">
+  <h2>Usuarios</h2>
+  <button (click)="handleModal()">Crear</button>
+<div>
+<table class="table-user">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Usuario</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Mauri</td>
+      <td>
+        <div>
+          <button class="btn">Editar</button>
+          <button class="btn">Eliminar</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Josema</td>
+      <td>
+        <div>
+          <button class="btn">Editar</button>
+          <button class="btn">Eliminar</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+
+@if (showHello) {
+  <div class="dialog" >
+    <button  (click)="handleModal()">x</button>
+    <h2>dialog</h2>
+  </div>
+}
+
