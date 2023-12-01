@@ -1,0 +1,43 @@
+<div class="tabla-padre">
+  <h2>Equipos</h2>
+  <button (click)="handleModal()">Crear</button>
+  <div>
+    <table class="table-user">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Usuario</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(v of teamList; track v.id){
+        <tr>
+          <td>{{ v.id }}</td>
+          <td>{{ v.name }}</td>
+          <td>
+            <div>
+              <button class="btn">Editar</button>
+              <button class="btn" (click)="deleteTeam(v.id)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (showHello) {
+
+<div class="Crear-usuario">
+  <button class="button-close" (click)="handleModal()">x</button>
+  <h2>Añadir Equipo</h2>
+
+  <p>Nombre</p>
+  <input id="name" type="text" formControlName="name" />
+
+  <button class="btn-añadir" (click)="addTeam()">Agregar</button>
+</div>
+
+}
