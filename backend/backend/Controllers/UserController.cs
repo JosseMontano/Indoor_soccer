@@ -38,9 +38,9 @@ namespace backend.Controllers
                 return Ok(new { Message = "Ya existe este nombre de usuario" });
             }
 
-            Guid myUUId = Guid.NewGuid();
-            string convertedUUID = myUUId.ToString();
-            user.Id = convertedUUID;
+           /* Guid myUUId = Guid.NewGuid();
+            string convertedUUID = myUUId.ToString();*/
+            user.Id = 0;
             user.UserName = req.Username;
             user.Password = BCrypt.Net.BCrypt.HashPassword(req.Password);
 

@@ -13,5 +13,6 @@ namespace backend.Context
 
         // ===== MODEL =====
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Team> Team { get; set; }
     }
 }
