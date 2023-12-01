@@ -38,9 +38,16 @@
 
 
 @if (showHello) {
-  <div class="dialog" >
-    <button  (click)="handleModal()">x</button>
-    <h2>dialog</h2>
+  <div class="Crear-usuario" >
+    <button class="button-close"  (click)="handleModal()">x</button>
+    <h2>Añadir usuario</h2>
+    
+    <p>Usuario</p>
+    <input type="text">
+    <p>Contraseña</p>
+    <input type="text">
+
+    <button class="btn-añadir">Añadir usuario</button>
   </div>
 }
 

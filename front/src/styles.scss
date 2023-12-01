@@ -20,7 +20,7 @@
     }
 
   .btn {
-    background-color: #4CAF50;
+    background-color: rgb(237, 179, 71);
     border: none;
     color: white;
     padding: 5px 10px;
@@ -34,6 +34,11 @@
    }
    
    .btn:hover {
-    background-color: #45a049;
+    background-color:rgb(130, 92, 22);;
+   }
+   .btn-añadir{
+    padding: 10px;
+    display: flex;
+    gap: 10px;
    }
 
