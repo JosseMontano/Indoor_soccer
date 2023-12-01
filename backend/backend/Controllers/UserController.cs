@@ -1,12 +1,13 @@
-﻿using backend.Context;
-using backend.Models;
+﻿using backend.Models;
+using backend.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 
+using System;
+using System.Diagnostics;
 
 namespace backend.Controllers
 {
@@ -19,6 +20,7 @@ namespace backend.Controllers
         public static User user = new User();
         // ====== CONNECTION ======
         private DBCont _dbCont;
+  
         public UserController(IConfiguration config, DBCont dbCont)
         {
             _config = config;
@@ -36,6 +38,9 @@ namespace backend.Controllers
                 return Ok(new { Message = "Ya existe este nombre de usuario" });
             }
 
+            Guid myUUId = Guid.NewGuid();
+            string convertedUUID = myUUId.ToString();
+            user.Id = convertedUUID;
             user.UserName = req.Username;
             user.Password = BCrypt.Net.BCrypt.HashPassword(req.Password);
 
@@ -47,47 +52,55 @@ namespace backend.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] User user)
-        {
-            if(user.UserName == "demo" && user.Password == "password")
-            { 
-                var token = GenerateToken(user.UserName);
-            return Ok(new {token });
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] UserDto req)
 
+        {
+            var user = _dbCont.User.FirstOrDefault(v => v.UserName == req.Username);
+
+            if (user == null)
+            {
+                return BadRequest("User not found.");
             }
-            return Unauthorized();
+
+            if (!BCrypt.Net.BCrypt.Verify(req.Password, user.Password))
+            {
+                return BadRequest("Wrong password.");
+            }
+
+            string token = CreateToken(user.UserName);
+
+            return Ok(token);
         }
 
 
-
-        private string GenerateToken(string username)
+        private string CreateToken(string userName)
         {
+            List<Claim> claims = new List<Claim> {
+                new Claim(ClaimTypes.Name, userName),
+                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.Role, "User"),
+            };
 
-            var claims = new[]
-      {
-            new Claim(ClaimTypes.Name, username),
-            // Add more claims as needed
-        };
 
-            var key = new byte[32]; // 256 bits
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(key);
-            }
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _config.GetSection("AppSettings:Token").Value!));
 
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("JoseVey123"));
-            var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var token = new JwtSecurityToken(
-                issuer: "unifranz.com",
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(30), // Token expiration time
-                signingCredentials: creds
-            );
+                    claims: claims,
+                    expires: DateTime.Now.AddDays(1),
+                    signingCredentials: creds
+                );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+           
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
         }
-
     }
+
 }
+
