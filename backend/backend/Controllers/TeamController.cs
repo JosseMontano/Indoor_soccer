@@ -44,7 +44,7 @@ namespace backend.Controllers
             _dbCont.Add(team);
             _dbCont.SaveChanges();
 
-            return Ok(new { Message = "Se creo el equipo" });
+            return Ok(new { Message = "Se creo el equipo", Data=team });
         }
 
         [HttpDelete("{id}")]

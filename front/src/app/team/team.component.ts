@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { teamDto } from './team.dto';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { TeamService } from './team.service';
 
+  
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './team.component.html',
   styleUrl: './team.component.scss',
 })
@@ -42,7 +43,7 @@ export class TeamComponent implements OnInit {
   }
 
   addTeam() {
-    console.log('click');
+    
     const request: teamDto = {
       id: 0,
       name: this.formTeam.value.name,
@@ -50,7 +51,7 @@ export class TeamComponent implements OnInit {
 
     this._teamService.add(request).subscribe({
       next: (v) => {
-        this.teamList.push(request);
+        this.teamList.push(v.data);
         this.formTeam.patchValue({
           name: '',
         });

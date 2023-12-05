@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { teamDto } from './team.dto';
 import { HttpClient } from '@angular/common/http';
+import { RequestsI } from '../../interfaces/request';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +22,8 @@ export class TeamService {
   }
 
   
-  add(team: teamDto): Observable<string> {
-    return this.http.post<string>(`${this.endPoint}`, team);
+  add(team: teamDto): Observable<RequestsI<teamDto>> {
+    return this.http.post<RequestsI<teamDto>>(`${this.endPoint}`, team);
   }
 
 

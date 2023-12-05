@@ -32,12 +32,12 @@
 
 <div class="Crear-usuario">
   <button class="button-close" (click)="handleModal()">x</button>
-  <h2>Añadir Equipo</h2>
-
-  <p>Nombre</p>
-  <input id="name" type="text" formControlName="name" />
-
-  <button class="btn-añadir" (click)="addTeam()">Agregar</button>
+  <form [formGroup]="formTeam" (ngSubmit)="addTeam()">
+    <h2>Añadir Equipo</h2>
+    <p>Nombre</p>
+    <input id="name" type="text" formControlName="name" />
+    <button class="btn-añadir" type="submit">Agregar</button>
+  </form>
 </div>
 
 }
