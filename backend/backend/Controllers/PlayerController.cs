@@ -33,6 +33,21 @@ namespace backend.Controllers
             return Ok(new { Message = "Se guardo al jugador", Data = player });
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Player player)
+        {
+            if (id != player.Id)
+            {
+                return BadRequest();
+            }
+
+            _dbCont.Entry(player).State = EntityState.Modified;
+
+            _dbCont.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

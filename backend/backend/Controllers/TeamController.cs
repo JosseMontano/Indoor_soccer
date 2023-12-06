@@ -48,6 +48,21 @@ namespace backend.Controllers
             return Ok(new { Message = "Se creo el equipo", Data=team });
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Team team)
+        {
+            if (id != team.Id)
+            {
+                return BadRequest();
+            }
+
+            _dbCont.Entry(team).State = EntityState.Modified;
+
+            _dbCont.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
