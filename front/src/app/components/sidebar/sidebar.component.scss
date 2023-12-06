@@ -1,4 +1,4 @@
-$primary-color: #3498db;
+$primary-color: #1b1c21;
 $secondary-color: #2ecc71;
 $sidebar-width: 250px;
 
@@ -12,6 +12,8 @@ $sidebar-width: 250px;
   overflow-y: auto;
   transition: width 0.3s;
   min-height: 100vh;
+  border:0px;
+  border-right:.5px solid rgba(255, 255, 255,.2);
   header {
     padding: 1rem;
     text-align: center;
@@ -37,6 +39,7 @@ $sidebar-width: 250px;
       margin: 0;
       li.section {
         position: relative;
+        padding: 5px 15px !important;
         input[type="checkbox"] {
           display: none;
         }
@@ -47,21 +50,24 @@ $sidebar-width: 250px;
           text-decoration: none;
           cursor: pointer;
           &:hover {
-            background-color: darken($primary-color, 10%);
+            color: rgb(203, 156, 68);
           }
         }
         .sub-sections {
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.3s ease-out;
+          padding: 0px 10px !important;
           li {
             a {
               padding: 0.5rem;
+              color: #7247c4;
+              text-decoration: none;
             }
           }
         }
         input[type="checkbox"]:checked + label {
-          background-color: darken($primary-color, 10%);
+          color:rgb(203, 156, 68)
         }
         input[type="checkbox"]:checked + label + .sub-sections {
           max-height: 100vh;
