@@ -13,6 +13,8 @@
             <li><a href="#subsection1-2">Subsection 1.2</a></li>
           </ul>
         </li>
+
+       @if(userLogged){
         <li class="section">
           <input type="checkbox" id="section2" />
           <label for="section2">Section 2</label>
@@ -21,10 +23,13 @@
             <li><a href="#subsection2-2">Subsection 2.2</a></li>
           </ul>
         </li>
+
         <li class="section">
           <input type="checkbox" id="section3" />
           <label for="section3">Section 3</label>
         </li>
+       }
+
       </ul>
     </nav>
   </div>
