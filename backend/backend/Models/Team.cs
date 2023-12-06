@@ -10,5 +10,7 @@ namespace backend.Models
         [Required]
         [StringLength(25)]
         public string Name { get; set; }
+
+        public List<Player> Players { get; set; }
     }
 }

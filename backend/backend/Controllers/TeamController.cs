@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using backend.Context;
 using backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -19,7 +20,7 @@ namespace backend.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var teams = _dbCont.Team;
+            var teams = _dbCont.Team.Include(t => t.Players);
             return Ok(teams);
         }
 
@@ -27,7 +28,7 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var team = _dbCont.Team.Find(id);
+            var team = _dbCont.Team.Include(t=>t.Players).FirstOrDefault(t => t.Id == id);
             return Ok(team);
         }
 
