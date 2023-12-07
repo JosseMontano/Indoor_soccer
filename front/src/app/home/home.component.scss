@@ -3,7 +3,7 @@
   gap: 10px;
   min-width: 100%;
 
-  .container_banner{
+  .container_banner {
     width: 70%;
     @media (max-width: 1050px) {
       width: 50%;
@@ -24,10 +24,46 @@
   }
 
   .content {
+    display: grid;
+    gap:10px;
+    place-content: center;
     min-width: 30%;
     min-height: 100%;
-    background-color: #fff;
+    background-color: #1b1c21;
     border-radius: 10px;
+
+    .header {
+      text-align: center;
+      h4{
+        font-size: 26px;
+      }
+    }
+
+    .central {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      p{
+        background-color: #bba3e6;
+        padding: 10px;
+        border-radius: 12px;
+        color: #7247c4;
+        width: 50px;
+        text-align: center;
+        font-weight: bold;
+      }
+      img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .footer{
+      text-align: center;
+    }
+
     @media (max-width: 1050px) {
       width: 50%;
     }
