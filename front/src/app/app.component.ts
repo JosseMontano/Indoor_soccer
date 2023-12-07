@@ -15,7 +15,9 @@ import { RoutesVec } from './app.routes';
 export class AppComponent {
   routesVec = RoutesVec;
   showDash = false;
+
   constructor(private router: Router) {
+    //get the route to show or hide the sidebar
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         const routeFound = this.routesVec.find((v) => v.path === e.url);
@@ -26,4 +28,5 @@ export class AppComponent {
       }
     });
   }
+
 }

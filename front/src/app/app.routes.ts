@@ -11,7 +11,10 @@ interface RoutesVecType {
 }
 
 export const RoutesVec: RoutesVecType[] = [
-  { path: '/', showDash: false },
+  {
+    path: '/',
+    showDash: true,
+  },
   {
     path: '/login',
     showDash: false,
