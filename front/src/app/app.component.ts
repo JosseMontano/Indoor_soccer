@@ -21,12 +21,12 @@ export class AppComponent {
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         const routeFound = this.routesVec.find((v) => v.path === e.url);
-        console.log(routeFound);
         if (routeFound?.showDash) {
-          this.showDash = true;
+          this.showDash = routeFound.showDash;
+        } else {
+          this.showDash = false;
         }
       }
     });
   }
-
 }
