@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { TeamComponent } from './team/team.component';
 import { PlayerComponent } from './player/player.component';
+import { SoccerGamesComponent } from './soccer-games/soccer-games.component';
 
 interface RoutesVecType {
   path: string;
@@ -31,6 +32,10 @@ export const RoutesVec: RoutesVecType[] = [
     path: '/jugadores',
     showDash: true,
   },
+  {
+    path: '/partidos',
+    showDash: true,
+  },
 ];
 
 export const routes: Routes = [
@@ -39,4 +44,5 @@ export const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'teams', component: TeamComponent },
   { path: 'jugadores', component: PlayerComponent },
+  { path: 'partidos', component: SoccerGamesComponent },
 ];

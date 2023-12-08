@@ -1,6 +1,8 @@
-import { Component, WritableSignal, effect, inject  } from '@angular/core';
+import { Component, WritableSignal, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginStoreService } from '../../login/login.store.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -13,10 +15,13 @@ export class SidebarComponent {
   auth = inject(LoginStoreService);
 
   userLogged = false;
-  constructor() {
+  constructor(private router: Router) {
     effect(() => {
-    this.userLogged = this.auth.userAuth(); 
-  
+      this.userLogged = this.auth.userAuth();
     });
+  }
+
+  redirectTo(param:string){
+    this.router.navigate([param])
   }
 }

@@ -2,18 +2,16 @@ $primary-color: #1b1c21;
 $secondary-color: #2ecc71;
 $sidebar-width: 250px;
 
-
-
-
 .sidebar {
   width: $sidebar-width;
   background-color: $primary-color;
   color: white;
   overflow-y: auto;
   transition: width 0.3s;
-  min-height: 100%;
-  border:0px;
-  border-right:.5px solid rgba(255, 255, 255,.2);
+  min-height: 100vh;
+  height: 100%;
+  border: 0px;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.2);
   header {
     padding: 1rem;
     text-align: center;
@@ -67,7 +65,7 @@ $sidebar-width: 250px;
           }
         }
         input[type="checkbox"]:checked + label {
-          color:rgb(203, 156, 68)
+          color: rgb(203, 156, 68);
         }
         input[type="checkbox"]:checked + label + .sub-sections {
           max-height: 100vh;
@@ -102,5 +100,5 @@ $sidebar-width: 250px;
       position: fixed;
       top: 0;
     }
-}
+  }
 }

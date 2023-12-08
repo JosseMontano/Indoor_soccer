@@ -1,35 +1,36 @@
 <div class="sidebar">
-    <header>
-      <h1>OneSport</h1>
-    </header>
-    <label for="menu-toggle" class="menu-icon"><span></span></label>
-    <nav>
-      <ul>
-        <li class="section">
+  <header>
+    <h1>OneSport</h1>
+  </header>
+  <label for="menu-toggle" class="menu-icon"><span></span></label>
+  <nav>
+    <ul>
+      <!--   <li class="section">
           <input type="checkbox" id="section1" />
           <label for="section1">Section 1</label>
           <ul class="sub-sections">
             <li><a href="#subsection1-1">Subsection 1.1</a></li>
             <li><a href="#subsection1-2">Subsection 1.2</a></li>
           </ul>
-        </li>
+        </li> -->
 
-       @if(userLogged){
-        <li class="section">
-          <input type="checkbox" id="section2" />
-          <label for="section2">Section 2</label>
-          <ul class="sub-sections">
-            <li><a href="#subsection2-1">Subsection 2.1</a></li>
-            <li><a href="#subsection2-2">Subsection 2.2</a></li>
-          </ul>
-        </li>
+      @if(userLogged){
 
-        <li class="section">
-          <input type="checkbox" id="section3" />
-          <label for="section3">Section 3</label>
-        </li>
-       }
+      <li class="section">
+        <input type="checkbox" id="section3" />
+        <label for="section3" (click)="redirectTo('teams')">Equipos</label>
+      </li>
 
-      </ul>
-    </nav>
-  </div>
+      <li class="section">
+        <input type="checkbox" id="section3" />
+        <label for="section3" (click)="redirectTo('jugadores')">Jugadores</label>
+      </li>
+
+      <li class="section">
+        <input type="checkbox" id="section3" />
+        <label for="section3" (click)="redirectTo('partidos')">Partidos</label>
+      </li>
+      }
+    </ul>
+  </nav>
+</div>
