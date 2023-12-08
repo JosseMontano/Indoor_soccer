@@ -1,3 +1,10 @@
+.container_father {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
 .container_header {
   display: flex;
   gap: 10px;
@@ -160,4 +167,116 @@ table {
     text-align: center;
     font-weight: bold;
   }
+}
+
+
+//players
+
+.select-selected {
+  background-color: #212227;
+  color: #fff;
+  padding: 5px !important;
+  border-radius: 7px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
+  color: #000;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+#customers {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0px .3em;
+
+  .colum_img {
+    display: flex;
+    gap: 10px
+  }
+}
+
+#customers td,
+#customers th {
+  padding: 10px !important;
+
+
+  &:nth-child(1) {
+    width: 20%;
+  }
+
+  &:nth-child(2) {
+    width: calc(80%/3);
+  }
+
+  &:nth-child(3) {
+    width: calc(80%/3);
+  }
+
+  &:nth-child(4) {
+    width: calc(80%/3);
+  }
+
+}
+
+#customers tr {
+  background-color: #0c0b0c;
+  cursor: pointer;
+  color: #fff;
+}
+
+
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
 }
