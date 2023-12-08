@@ -1,5 +1,6 @@
 ﻿using backend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace backend.Context
 
@@ -15,6 +16,9 @@ namespace backend.Context
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<Player> Player { get; set; }
+        public virtual DbSet<Game> Game { get; set; }
+
+  
 
     }
 }

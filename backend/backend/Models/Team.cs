@@ -12,5 +12,9 @@ namespace backend.Models
         public string Name { get; set; }
 
         public List<Player> Players { get; set; }
+
+        public ICollection<Game> Game { get; set; }
+
+
     }
 }

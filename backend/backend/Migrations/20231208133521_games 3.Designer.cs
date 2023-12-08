@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using backend.Context;
@@ -11,9 +12,11 @@ using backend.Context;
 namespace backend.Migrations
 {
     [DbContext(typeof(DBCont))]
-    partial class DBContModelSnapshot : ModelSnapshot
+    [Migration("20231208133521_games 3")]
+    partial class games3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,9 +45,15 @@ namespace backend.Migrations
                     b.Property<int>("TeamLocalId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("TeamVisitorId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamLocalId");
+                    b.HasIndex("TeamLocalId")
+                        .IsUnique();
+
+                    b.HasIndex("TeamVisitorId");
 
                     b.ToTable("Game");
                 });
@@ -134,12 +143,20 @@ namespace backend.Migrations
             modelBuilder.Entity("backend.Models.Game", b =>
                 {
                     b.HasOne("backend.Models.Team", "TeamLocal")
-                        .WithMany("Game")
-                        .HasForeignKey("TeamLocalId")
+                        .WithOne("Game")
+                        .HasForeignKey("backend.Models.Game", "TeamLocalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Models.Team", "TeamVisitor")
+                        .WithMany()
+                        .HasForeignKey("TeamVisitorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("TeamLocal");
+
+                    b.Navigation("TeamVisitor");
                 });
 
             modelBuilder.Entity("backend.Models.Player", b =>

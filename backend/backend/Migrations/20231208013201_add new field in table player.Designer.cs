@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using backend.Context;
@@ -11,9 +12,11 @@ using backend.Context;
 namespace backend.Migrations
 {
     [DbContext(typeof(DBCont))]
-    partial class DBContModelSnapshot : ModelSnapshot
+    [Migration("20231208013201_add new field in table player")]
+    partial class addnewfieldintableplayer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,33 +24,6 @@ namespace backend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("backend.Models.Game", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("GoalsTeamLocal")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GoalsTeamVisitor")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TeamLocalId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TeamLocalId");
-
-                    b.ToTable("Game");
-                });
 
             modelBuilder.Entity("backend.Models.Player", b =>
                 {
@@ -131,17 +107,6 @@ namespace backend.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("backend.Models.Game", b =>
-                {
-                    b.HasOne("backend.Models.Team", "TeamLocal")
-                        .WithMany("Game")
-                        .HasForeignKey("TeamLocalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TeamLocal");
-                });
-
             modelBuilder.Entity("backend.Models.Player", b =>
                 {
                     b.HasOne("backend.Models.Team", null)
@@ -153,8 +118,6 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Team", b =>
                 {
-                    b.Navigation("Game");
-
                     b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
