@@ -5,50 +5,6 @@
 }
 
 
-// =============== NAVBAR ================ 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: .5px solid rgba(255, 255, 255, .5);
-  padding: 10px;
-
-  input {
-    width: 450px;
-    padding: 6px;
-    background-color: #000000;
-    border: none;
-    border: 1px solid #858585;
-    color:#fff;
-    border-radius: 5px;
-    font-size: 15px;
-  }
-
-  .info_user {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-
-
-  }
-
-
-}
-
-
-
-// =============== END NAVBAR ================
-
-
 .container_header {
   display: flex;
   gap: 10px;

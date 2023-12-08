@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { teamDto } from './team.dto';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { TeamService } from './team.service';
+import { NavbarComponent } from '../components/navbar/navbar.component';
+import { Router } from '@angular/router';
 
-  
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NavbarComponent],
   templateUrl: './team.component.html',
   styleUrl: './team.component.scss',
 })
@@ -24,7 +32,8 @@ export class TeamComponent implements OnInit {
 
   constructor(
     private _teamService: TeamService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.formTeam = this.formBuilder.group({
       name: [''],
@@ -43,7 +52,6 @@ export class TeamComponent implements OnInit {
   }
 
   addTeam() {
-    
     const request: teamDto = {
       id: 0,
       name: this.formTeam.value.name,
@@ -74,8 +82,12 @@ export class TeamComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
     this.getTeam();
+  }
+
+  msgBtnNavbar = "Cerrar sesion"
+  redirectLogin() {
+    this.router.navigate(['/login']);
   }
 }
