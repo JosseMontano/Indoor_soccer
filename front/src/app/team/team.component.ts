@@ -12,6 +12,7 @@ import {
 import { TeamService } from './team.service';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { Router } from '@angular/router';
+import { PlayerI } from '../../interfaces/player';
 
 @Component({
   selector: 'app-team',
@@ -52,11 +53,20 @@ export class TeamComponent implements OnInit {
   }
 
   addTeam() {
+    const player: PlayerI[] = [
+      {
+        id: 0,
+        names: '0',
+        lastNames: '0',
+        teamId: 0,
+      },
+    ];
     const request: teamDto = {
       id: 0,
       name: this.formTeam.value.name,
+      players: player,
     };
-
+    
     this._teamService.add(request).subscribe({
       next: (v) => {
         this.teamList.push(v.data);
@@ -86,7 +96,7 @@ export class TeamComponent implements OnInit {
     this.getTeam();
   }
 
-  msgBtnNavbar = "Cerrar sesion"
+  msgBtnNavbar = 'Cerrar sesion';
   redirectLogin() {
     this.router.navigate(['/login']);
   }
